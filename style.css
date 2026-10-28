@@ -1,0 +1,733 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+.header {
+    background: #172554;
+    color: white;
+    padding: 24px 20px;
+}
+
+.header h1 {
+    margin: 0 0 6px;
+    font-size: 26px;
+}
+
+.header p {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.welcome h2 {
+    margin: 0 0 8px;
+    font-size: 23px;
+}
+
+.welcome p {
+    margin: 0 0 22px;
+    color: #64748b;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.stat-card {
+    background: white;
+    padding: 18px 14px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #0000000a;
+    border: 1px solid #e2e8f0;
+}
+
+.stat-card p {
+    margin: 0 0 14px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-size: 28px;
+    color: #172554;
+}
+
+@media (min-width: 700px) {
+    .stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .container {
+        padding: 32px 24px;
+    }
+}
+
+.employees {
+    margin-top: 30px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.employees h2 {
+    margin-top: 0;
+}
+
+.employees > p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+.chart-card {
+    margin-top: 24px;
+    padding: 24px 16px;
+    background: #ffffff;
+    border: 1px solid #e0e7f0;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(23, 37, 84, 0.06);
+}
+
+.chart-card h2 {
+    margin: 0 0 26px;
+    color: #172554;
+    font-size: 20px;
+}
+
+
+.chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.chart-legend p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    border-radius: 50%;
+}
+
+.legend-dot.present {
+    background: #75ad9b;
+}
+
+.legend-dot.absent {
+    background: #e5a0a0;
+}
+
+.legend-dot.leave {
+    background: #e8c77b;
+}
+
+
+
+#attendance-chart {
+    position: relative;
+    display: block;
+    width: 210px !important;
+    height: 210px !important;
+    min-width: 210px;
+    min-height: 210px;
+    flex-shrink: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 5px solid #ffffff;
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 2px #dce5f3,
+        0 0 20px rgba(117, 173, 155, 0.3),
+        0 8px 24px rgba(23, 37, 84, 0.15);
+}
+
+
+#attendance-chart::after {
+    content: "";
+    position: absolute;
+    width: 36%;
+    height: 36%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border: 2px solid #e8edf5;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(117, 173, 155, 0.25);
+    pointer-events: none;
+    z-index: 2;
+}
+
+
+@media (max-width: 380px) {
+    #attendance-chart {
+        width: 180px !important;
+        height: 180px !important;
+        min-width: 180px;
+        min-height: 180px;
+    }
+}
+
+
+.chart-card {
+    margin-bottom: 30px;
+}
+
+.attendance {
+    margin-top: 24px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.attendance h2 {
+    margin-top: 0;
+}
+
+.attendance > p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+#attendance-date {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    padding: 11px;
+    margin: 12px 0 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.attendance-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.attendance-row h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.attendance-row select {
+    padding: 9px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: white;
+    font-size: 14px;
+}
+
+#save-attendance {
+    width: 100%;
+    margin-top: 18px;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #172554;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#attendance-message {
+    margin-bottom: 0;
+}
+
+
+.history {
+    margin-top: 24px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.history h2 {
+    margin-top: 0;
+}
+
+.history > p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+#history-date {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    padding: 11px;
+    margin: 12px 0 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.history-record {
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.history-record h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.history-record p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+
+#export-message {
+    color: #64748b;
+    font-size: 14px;
+}
+
+#save-attendance,
+#export-csv {
+    display: block;
+    width: fit-content;
+    min-width: 150px;
+    margin: 10px auto;
+    padding: 12px 20px;
+}
+
+
+/* Tab navigation */
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    padding: 6px;
+    margin-bottom: 22px;
+    background: #e2e8f0;
+    border-radius: 12px;
+}
+
+.tab {
+    min-width: 0;
+    padding: 12px 4px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #475569;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tab.active {
+    background: white;
+    color: #172554;
+    box-shadow: 0 1px 4px #00000012;
+}
+
+/* Show only the selected section */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Keep the navigation usable on small screens */
+@media (max-width: 380px) {
+    .tabs {
+        gap: 3px;
+        padding: 4px;
+    }
+
+    .tab {
+        font-size: 10px;
+        padding: 11px 2px;
+    }
+}
+
+
+/* ===== EMPLOYEE MANAGEMENT ===== */
+
+.employees {
+    margin-top: 30px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px #1725540a;
+}
+
+.employees h2 {
+    margin-top: 0;
+    color: #172554;
+}
+
+.employees > p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Four employee options */
+
+.employee-menu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 700px;
+    margin: 24px auto;
+}
+
+.employee-menu button {
+    width: 100%;
+    min-height: 68px;
+    padding: 16px 10px;
+    border: 1px solid #dbe4f0;
+    border-radius: 12px;
+    background: #eef2ff;
+    color: #172554;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.employee-menu button:hover {
+    background: #dbe5ff;
+}
+
+/* Hide inactive employee screens */
+
+[hidden] {
+    display: none !important;
+}
+
+/* Add and Edit forms */
+
+#employee-form,
+#edit-employee-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+#employee-form input,
+#edit-employee-form input {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1e293b;
+    font: inherit;
+    font-size: 15px;
+}
+
+#employee-form label,
+#edit-employee-form label {
+    grid-column: 1 / -1;
+    margin-bottom: -8px;
+    color: #475569;
+    font-size: 14px;
+}
+
+#employee-form input[type="date"],
+#edit-employee-form input[type="date"] {
+    grid-column: 1 / -1;
+}
+
+/* Form buttons */
+
+#employee-form button,
+#edit-employee-form button {
+    grid-column: 1 / -1;
+    justify-self: start;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #172554;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Search fields */
+
+#remove-employee-search,
+#view-employee-search,
+#edit-employee-search {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 18px 0;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    font: inherit;
+}
+
+/* Employee lists */
+
+#employee-remove-list,
+#employee-view-list,
+#employee-edit-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.employee-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.employee-row span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+}
+
+.employee-row button {
+    padding: 9px 13px;
+    border: none;
+    border-radius: 7px;
+    background: #172554;
+    color: #ffffff;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Remove list checkboxes */
+
+#employee-remove-list .employee-row {
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+}
+
+#employee-remove-list input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #172554;
+}
+
+#employee-remove-list .employee-row button,
+#delete-selected-employees {
+    background: #dc2626;
+}
+
+/* Search match highlighting */
+
+.employee-row mark {
+    background: #fef08a;
+    color: #1e293b;
+}
+
+/* Employee details */
+
+#employee-details p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 12px 0;
+    margin: 0;
+    border-bottom: 1px solid #e2e8f0;
+    overflow-wrap: anywhere;
+}
+
+#employee-details strong {
+    color: #334155;
+}
+
+/* Back and selected-delete buttons */
+
+#employee-back-button,
+#delete-selected-employees,
+#edit-current-employee {
+    margin-top: 16px;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #172554;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#employee-back-button {
+    background: #e2e8f0;
+    color: #172554;
+}
+
+/* Common responsive behaviour */
+
+@media (min-width: 700px) {
+    .employees {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .employees {
+        padding: 16px;
+    }
+
+    #employee-form,
+    #edit-employee-form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #employee-form label,
+    #edit-employee-form label,
+    #employee-form input[type="date"],
+    #edit-employee-form input[type="date"] {
+        grid-column: 1;
+    }
+
+    .employee-row,
+    #employee-remove-list .employee-row {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .employee-row button {
+        grid-column: 2;
+        justify-self: start;
+    }
+
+    #employee-remove-list .employee-row span:nth-of-type(1) {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #employee-remove-list .employee-row span:nth-of-type(2) {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    #employee-remove-list .employee-row button {
+        grid-column: 2;
+        grid-row: 3;
+    }
+}
+
+/* Fix employee removal list visibility */
+
+#remove-employee-view,
+#employee-remove-list {
+    width: 100%;
+}
+
+#employee-remove-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+#employee-remove-list .employee-row {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #1e293b;
+}
+
+#employee-remove-list .employee-row span {
+    display: block;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: #1e293b;
+}
+
+#employee-remove-list input[type="checkbox"] {
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+#employee-remove-list .employee-row button {
+    display: inline-block;
+    visibility: visible;
+}
+
+@media (max-width: 480px) {
+    #employee-remove-list .employee-row {
+        grid-template-columns: 24px minmax(0, 1fr);
+    }
+
+    #employee-remove-list .employee-row input[type="checkbox"] {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #employee-remove-list .employee-row span:nth-of-type(1) {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #employee-remove-list .employee-row span:nth-of-type(2) {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    #employee-remove-list .employee-row button {
+        grid-column: 2;
+        grid-row: 3;
+    }
+}

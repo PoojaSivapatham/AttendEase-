@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AttendEase - Attendance Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div>
+            <h1>AttendEase</h1>
+            <p>Employee Attendance Management</p>
+        </div>
+    </header>
+
+
+<main class="container">
+
+    <nav class="tabs" aria-label="Main navigation">
+        <button class="tab active" data-tab="dashboard">Dashboard</button>
+        <button class="tab" data-tab="employees">Employees</button>
+        <button class="tab" data-tab="attendance">Attendance</button>
+        <button class="tab" data-tab="history">History</button>
+    </nav>
+
+    <section class="tab-content active" id="dashboard">
+        <section class="welcome">
+            <h2>Dashboard</h2>
+            <p>Here's your attendance overview.</p>
+        </section>
+      <section class="chart-card">
+    <h2>Today's Attendance</h2>
+
+    <div class="chart-container">
+        
+
+<div id="attendance-chart"
+     role="img"
+     aria-label="Today's attendance breakdown">
+</div>
+      
+<div class="chart-legend">
+    <p>
+        <span class="legend-dot present"></span>
+        Present
+    </p>
+
+    <p>
+        <span class="legend-dot absent"></span>
+        Absent
+    </p>
+
+    <p>
+        <span class="legend-dot leave"></span>
+        Leave
+    </p>
+</div>
+
+    </div>
+      </section>
+
+        <section class="stats">
+            <article class="stat-card">
+                <p>Total Employees</p>
+                <h3 id="total-employees">0</h3>
+            </article>
+            <article class="stat-card">
+                <p>Present Today</p>
+                <h3 id="present-count">0</h3>
+            </article>
+            <article class="stat-card">
+                <p>Absent Today</p>
+                <h3 id="absent-count">0</h3>
+            </article>
+            <article class="stat-card">
+                <p>Attendance Rate</p>
+                <h3 id="attendance-rate">0%</h3>
+            </article>
+        </section>
+      
+
+
+    </section>
+
+<section class="tab-content" id="employees">
+    <section class="employees">
+
+        <h2>Employee Management</h2>
+        <p>Add, view, edit and remove employees.</p>
+
+        <!-- Main employee menu -->
+        <div id="employee-menu" class="employee-menu">
+
+            <button type="button" data-employee-view="add">
+                + Add Employee
+            </button>
+
+            <button type="button" data-employee-view="remove">
+                Remove Employee
+            </button>
+
+            <button type="button" data-employee-view="view">
+                View Employees
+            </button>
+
+            <button type="button" data-employee-view="edit">
+                Edit Employee
+            </button>
+
+        </div>
+
+        <!-- Add Employee Form -->
+        <div id="add-employee-view" hidden>
+
+            <h3>Add Employee</h3>
+
+            <form id="employee-form">
+
+                <input type="text" id="employee-first-name"
+                    placeholder="First name" required>
+
+                <input type="text" id="employee-last-name"
+                    placeholder="Last name" required>
+
+                <input type="text" id="employee-id"
+                    placeholder="Employee ID" required>
+
+                <input type="tel" id="employee-mobile"
+                    placeholder="Mobile number" required>
+
+                <input type="email" id="employee-email"
+                    placeholder="Email address" required>
+
+                <input type="number" id="employee-salary"
+                    placeholder="Current salary"
+                    min="0.01" step="0.01" required>
+
+                <label for="employee-joining-date">
+                    Date of Joining
+                </label>
+
+                <input type="date" id="employee-joining-date"
+                    required>
+
+                <button type="submit">Add Employee</button>
+
+            </form>
+
+        </div>
+
+        <!-- Remove Employee -->
+        <div id="remove-employee-view" hidden>
+
+            <h3>Remove Employee</h3>
+
+            <input type="search" id="remove-employee-search"
+                placeholder="Search by name or employee ID">
+
+            <div id="employee-remove-list">
+                <p>No employees added yet.</p>
+            </div>
+
+            <button type="button" id="delete-selected-employees" hidden>
+                Delete Selected
+            </button>
+
+        </div>
+
+        <!-- View Employees -->
+        <div id="view-employee-view" hidden>
+
+            <h3>Employees</h3>
+
+            <input type="search" id="view-employee-search"
+                placeholder="Search by name or employee ID">
+
+            <div id="employee-view-list">
+                <p>No employees added yet.</p>
+            </div>
+
+        </div>
+
+        <!-- Edit Employee: select an employee first -->
+        <div id="edit-employee-view" hidden>
+
+            <h3>Edit Employee</h3>
+
+            <input type="search" id="edit-employee-search"
+                placeholder="Search by name or employee ID">
+
+            <div id="employee-edit-list">
+                <p>No employees added yet.</p>
+            </div>
+
+        </div>
+
+        <!-- Employee Details -->
+        <div id="employee-details-view" hidden>
+
+            <h3>Employee Details</h3>
+
+            <div id="employee-details"></div>
+
+            <button type="button" id="edit-current-employee">
+                Edit Employee
+            </button>
+
+        </div>
+
+        <!-- Shared Edit Form -->
+        <div id="edit-employee-form-view" hidden>
+
+            <h3>Edit Employee Details</h3>
+
+            <form id="edit-employee-form">
+
+                <input type="text" id="edit-first-name"
+                    placeholder="First name" required>
+
+                <input type="text" id="edit-last-name"
+                    placeholder="Last name" required>
+
+                <input type="text" id="edit-employee-id"
+                    placeholder="Employee ID" required>
+
+                <input type="tel" id="edit-mobile"
+                    placeholder="Mobile number" required>
+
+                <input type="email" id="edit-email"
+                    placeholder="Email address" required>
+
+                <input type="number" id="edit-salary"
+                    placeholder="Current salary"
+                    min="0.01" step="0.01" required>
+
+                <label for="edit-joining-date">
+                    Date of Joining
+                </label>
+
+                <input type="date" id="edit-joining-date"
+                    required>
+
+                <button type="submit">Save Changes</button>
+
+            </form>
+
+        </div>
+
+        <!-- Back button -->
+        <button type="button" id="employee-back-button" hidden>
+            ← Back to Employee Menu
+        </button>
+
+    </section>
+</section>
+
+
+    <section class="tab-content" id="attendance">
+        <section class="attendance">
+            <h2>Daily Attendance</h2>
+            <p>Mark attendance for your employees.</p>
+
+            <label for="attendance-date">Attendance Date</label>
+            <input type="date" id="attendance-date">
+
+            <div id="attendance-list">
+                <p>Add employees first to mark attendance.</p>
+            </div>
+
+            <button id="save-attendance" type="button">
+                Save Attendance
+            </button>
+            <p id="attendance-message" role="status"></p>
+        </section>
+    </section>
+
+    <section class="tab-content" id="history">
+        <section class="history">
+            <h2>Attendance History</h2>
+            <p>View and export records for a selected date.</p>
+
+            <label for="history-date">Select Date</label>
+            <input type="date" id="history-date">
+
+            <div id="history-list">
+                <p>Select a date to view attendance.</p>
+            </div>
+
+            <button id="export-csv" type="button">
+                Export Attendance CSV
+            </button>
+            <p id="export-message" role="status"></p>
+        </section>
+    </section>
+
+</main>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
